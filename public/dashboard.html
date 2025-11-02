@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard — Mock</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('name') || 'Verified Seller';
+      const email = params.get('email') || 'demo@example.com';
+      const mobile = params.get('mobile') || 'N/A';
+      const idn = params.get('idn') || 'N/A';
+
+      document.getElementById('username').innerText = name;
+      document.getElementById('email').innerText = email;
+      document.getElementById('mobile').innerText = mobile;
+      document.getElementById('idn').innerText = idn;
+    });
+  </script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-96 text-center">
+    <h2 class="text-xl font-bold mb-2 text-green-600">✅ Authentication Successful</h2>
+    <p class="mb-4 text-gray-700">Welcome, <span id="username">Verified Seller</span></p>
+
+    <div class="text-left bg-gray-50 p-4 rounded-lg border">
+      <p class="text-sm">📛 <strong>Name:</strong> <span id="username">Verified Seller</span></p>
+      <p class="text-sm">✉️ <strong>Email:</strong> <span id="email">demo@example.com</span></p>
+      <p class="text-sm">📱 <strong>Mobile:</strong> <span id="mobile">N/A</span></p>
+      <p class="text-sm">🆔 <strong>Emirates ID:</strong> <span id="idn">N/A</span></p>
+    </div>
+
+    <ul class="text-left mt-4 space-y-2">
+      <li>📄 Emirates ID — Verified (mock)</li>
+      <li>📄 Trade License — Verified (mock)</li>
+      <li>📄 VAT Certificate — Verified (mock)</li>
+    </ul>
+
+    <div class="mt-6 flex justify-between">
+      <a href="/" class="text-blue-600 hover:underline">Home</a>
+      <a href="/logout" class="text-red-600 hover:underline">Logout</a>
+    </div>
+  </div>
+</body>
+</html>

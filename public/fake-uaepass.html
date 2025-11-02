@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>UAE Pass — Mock Login</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    input:invalid { box-shadow: none; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-md p-8">
+    <h2 class="text-2xl font-bold mb-4 text-gray-700">UAE Pass (Mock)</h2>
+    <p class="text-sm text-gray-500 mb-6">Enter your <strong>email</strong> or <strong>mobile number</strong> to simulate verification.</p>
+
+    <form method="post" action="/fake-uaepass/auth" class="space-y-4" onsubmit="return validateIdentifier()">
+      <div>
+        <label class="block text-sm text-gray-600 mb-1">Email or Mobile</label>
+        <input id="identifier" name="identifier" required
+               class="w-full px-3 py-2 border rounded-md" placeholder="e.g., amit@example.com or 971501234567" />
+        <p id="hint" class="mt-2 text-xs text-gray-400">You may enter either an email address or a mobile number (with or without country code).</p>
+      </div>
+
+      <div class="flex items-center justify-between mt-4">
+        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">Verify</button>
+        <a href="/" class="text-sm text-gray-500 hover:underline">Cancel</a>
+      </div>
+    </form>
+
+    <p class="mt-4 text-xs text-gray-400">This is a mock page for demonstration only — do not enter real sensitive data.</p>
+  </div>
+
+  <script>
+    function validateIdentifier() {
+      const el = document.getElementById('identifier');
+      const v = (el.value || '').trim();
+      if (!v) return false;
+
+      // basic checks: if contains @ treat as email, else ensure there are digits (mobile)
+      if (v.includes('@')) {
+        // very light email pattern
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(v)) {
+          alert('Please enter a valid email address.');
+          return false;
+        }
+      } else {
+        // mobile: allow +, digits and spaces; require at least 6 digits
+        const digits = v.replace(/\D/g, '');
+        if (digits.length < 6) {
+          alert('Please enter a valid mobile number (with country code if possible).');
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
